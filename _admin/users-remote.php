@@ -184,6 +184,12 @@ if ($do == "update") {
         }
 
         /* POST UPDATE PLACE */
+        
+        //Set sessions
+        $_SESSION[SESSION_PREFIX . 'user__Name'] = $_POST['user__Name'];
+        $_SESSION[SESSION_PREFIX . 'user__Email'] = $_POST['user__Email'];
+        
+        
         if ($_POST['referrer'] == '') {
             $_POST['referrer'] = ADMIN_URL . 'users-cards' . PHP_EXTENSION . '/';
         }
