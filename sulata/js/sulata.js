@@ -115,7 +115,6 @@ function delRecord(arg, warning) {
         return false;
 
     } else {
-        //alert 
         $(arg).parent().parent().remove();
         return true;
     }
@@ -127,9 +126,37 @@ function delById(id, warning) {
         return false;
 
     } else {
-        //alert 
-        $('#'+id).remove();
+
+        $('#' + id + '_del').hide();
+        $('#' + id + '_edit').hide();
+        $('#' + id + '_restore').show();
+        $('#' + id + ' header').addClass('strike-through');
+        $('#' + id + ' h1').addClass('strike-through');
+        $('#' + id + ' p').addClass('strike-through');
+        $('#' + id + ' label').addClass('strike-through');
+        $('#' + id + ' .card').addClass('deleted-bg');
+        $('#' + id + ' .card').addClass('red-border');
+
         return true;
+    }
+}
+//Restore row and confirm
+function restoreById(id) {
+    if ($('#' + id + '_del')) {
+        $('#' + id + '_del').show();
+    }
+    if ($('#' + id + '_edit')) {
+        $('#' + id + '_edit').show();
+    }
+    if ($('#' + id + '_restore')) {
+        $('#' + id + '_restore').hide();
+    }
+    if ($('#' + id)) {
+        $('#' + id + ' h1').removeClass('strike-through');
+        $('#' + id + ' p').removeClass('strike-through');
+        $('#' + id + ' label').removeClass('strike-through');
+        $('#' + id + ' .card').removeClass('deleted-bg');
+        $('#' + id + ' .card').removeClass('red-border');
     }
 }
 //Checkbox Area
@@ -219,10 +246,10 @@ function doStrongPassword(passwordEle, outputEle) {
 //Slugify text
 function doSlugify(text)
 {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+    return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
 }

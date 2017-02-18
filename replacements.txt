@@ -1,0 +1,6 @@
+$result['num_rows']
+$result['result'][0]
+$result['errno']
+ foreach ($result['result'] as $row) {
+$row = $result['result'][0];
+$numRows = $result['num_rows'];

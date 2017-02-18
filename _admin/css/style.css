@@ -326,7 +326,15 @@ form label{
 .card header a:hover{
     color:#15AA9A;
 }
-
+.strike-through{
+    text-decoration: line-through;
+}
+.deleted-bg{
+    background-color:#EEE;
+}
+.red-border{
+    border:1px solid #FBBBCB;
+}
 /* Pagination */
 
 .pagination li a{

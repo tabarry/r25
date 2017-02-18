@@ -20,6 +20,8 @@ define('MYSQL_ERROR', 'Sorry, there has been an error processing the form. Pleas
 define('GENERIC_ERROR', 'Sorry, there has been an error, you may try again.');
 
 define('DUPLICATION_ERROR', 'A record with the same %s already exists.');
+define('DUPLICATION_ERROR_ON_UPDATE', 'A record with the same %s has been created after your deletion, hence this record cannot be restored.');
+
 define('SUCCESS_MESSAGE', 'Record added successfully.');
 define('VIEW_FILE', 'View uploaded file..');
 define('VALIDATE_EMPTY_CHECKBOX', 'Please select at least one checkbox.');
@@ -29,6 +31,8 @@ define('LOST_PASSWORD_DATA_SENT', 'Your login details have been emailed to you.'
 define('LOST_PASSWORD_SUBJECT', 'Your %s login information');
 define('OLD_PASSWORD_MESSAGE', 'Old password will not be displayed and the password boxes below will show empty.');
 define('CONFIRM_DELETE', 'Are you sure?');
+define('CONFIRM_DELETE_RESTORE', 'This record has been deleted and can be restored, till this page is reloaded.');
+define('RECORD_RESTORED', 'Record restored successfully.');
 define('EDIT_RECORD', 'Edit record.');
 define('DELETE_RECORD', 'Delete record.');
 define('RECORD_NOT_FOUND', 'There are no records available to display.');

@@ -67,6 +67,7 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
 //Edit delete download access
 $editAccess = TRUE;
 $deleteAccess = TRUE;
+$restoreAccess = TRUE;
 $addAccess = TRUE;
 $downloadAccessCSV = TRUE;
 $downloadAccessPDF = TRUE;
