@@ -1,43 +1,4 @@
-//make two cols equal
-function suEqualCols(col1, col2) {
-    return false;
-    if ($("#" + col1)) {
-        col1Height = $("#" + col1).height();
-        c1h = col1Height + "px";
 
-    }
-    if ($("#" + col2)) {
-        col2Height = $("#" + col2).height();
-        c2h = col2Height + "px";
-    }
-    if (col1Height > col2Height) {
-        $("#" + col2).height(c1h);
-    } else {
-        $("#" + col1).height(c2h);
-    }
-    //to enable this function, remove or comment the 'return false;' line below
-    return false;
-    var ua = navigator.userAgent.toLowerCase();
-    //Check if not mobile
-    if (!((ua.search("ios") > -1) || (ua.search("ipad") > -1) || (ua.search("ipod") > -1) || (ua.search("iphone") > -1) || (ua.search("android") > -1) || (ua.search("blackberry") > -1) || (ua.search("nokia") > -1))) {
-
-        if ($("#" + col1)) {
-            col1Height = $("#" + col1).height();
-            c1h = col1Height + "px";
-
-        }
-        if ($("#" + col2)) {
-            col2Height = $("#" + col2).height();
-            c2h = col2Height + "px";
-        }
-        if (col1Height > col2Height) {
-            $("#" + col2).height(c1h);
-        } else {
-            $("#" + col1).height(c2h);
-        }
-
-    }
-}
 //Keep session live
 function suStayAlive(url) {
     $.post(url);
@@ -64,7 +25,7 @@ function suRedirect(url) {
 function suToggleButton(arg) {
     if (arg == 1) {
         if (parent.$('#suForm')) {
-            parent.$("#suForm").submit(function(event) {
+            parent.$("#suForm").submit(function (event) {
                 if (parent.$('#Submit')) {
                     parent.$("#Submit").val("Processing..");
                     parent.$("#Submit").css("cursor", "default");
@@ -126,16 +87,35 @@ function delById(id, warning) {
         return false;
 
     } else {
-
-        $('#' + id + '_del').hide();
-        $('#' + id + '_edit').hide();
-        $('#' + id + '_restore').show();
-        $('#' + id + ' header').addClass('strike-through');
-        $('#' + id + ' h1').addClass('strike-through');
-        $('#' + id + ' p').addClass('strike-through');
-        $('#' + id + ' label').addClass('strike-through');
-        $('#' + id + ' .card').addClass('deleted-bg');
-        $('#' + id + ' .card').addClass('red-border');
+        if ($('#' + id + '_del')) {
+            $('#' + id + '_del').hide();
+        }
+        if ($('#' + id + '_edit')) {
+            $('#' + id + '_edit').hide();
+        }
+        if ($('#' + id + '_restore')) {
+            $('#' + id + '_restore').show();
+        }
+        if ($('#' + id + ' header')) {
+            $('#' + id + ' header').addClass('strike-through');
+        }
+        if ($('#' + id + ' h1')) {
+            $('#' + id + ' h1').addClass('strike-through');
+        }
+        if ($('#' + id + ' p')) {
+            $('#' + id + ' p').addClass('strike-through');
+        }
+        if ($('#' + id + ' label')) {
+            $('#' + id + ' label').addClass('strike-through');
+        }
+        if ($('#' + id + ' .card')) {
+            $('#' + id + ' .card').addClass('deleted-bg');
+            $('#' + id + ' .card').addClass('red-border');
+        }
+        if ($('#' + id + ' td')) {
+            $('#' + id + ' td').addClass('strike-through');
+            $('#' + id + ' td').addClass('deleted-bg');
+        }
 
         return true;
     }
@@ -151,13 +131,24 @@ function restoreById(id) {
     if ($('#' + id + '_restore')) {
         $('#' + id + '_restore').hide();
     }
-    if ($('#' + id)) {
+    if ($('#' + id + ' h1')) {
         $('#' + id + ' h1').removeClass('strike-through');
+    }
+    if ($('#' + id + ' p')) {
         $('#' + id + ' p').removeClass('strike-through');
+    }
+    if ($('#' + id + ' label')) {
         $('#' + id + ' label').removeClass('strike-through');
+    }
+    if ($('#' + id + ' .card')) {
         $('#' + id + ' .card').removeClass('deleted-bg');
         $('#' + id + ' .card').removeClass('red-border');
     }
+    if ($('#' + id + ' td')) {
+        $('#' + id + ' td').removeClass('strike-through');
+        $('#' + id + ' td').removeClass('deleted-bg');
+    }
+
 }
 //Checkbox Area
 function loadCheckbox(id, txt, fld) {

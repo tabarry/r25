@@ -31,7 +31,7 @@ define('LOST_PASSWORD_DATA_SENT', 'Your login details have been emailed to you.'
 define('LOST_PASSWORD_SUBJECT', 'Your %s login information');
 define('OLD_PASSWORD_MESSAGE', 'Old password will not be displayed and the password boxes below will show empty.');
 define('CONFIRM_DELETE', 'Are you sure?');
-define('CONFIRM_DELETE_RESTORE', 'This record has been deleted and can be restored, till this page is reloaded.');
+define('CONFIRM_DELETE_RESTORE', 'This record will be deleted but can be restored, till this page is reloaded.');
 define('RECORD_RESTORED', 'Record restored successfully.');
 define('EDIT_RECORD', 'Edit record.');
 define('DELETE_RECORD', 'Delete record.');

@@ -31,9 +31,9 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
     <head>
         <?php include('inc-head.php'); ?>
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 //Keep session alive
-                $(function() {
+                $(function () {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button
@@ -118,7 +118,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                     <fieldset id="search-area1">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><i class="fa fa-search blue"></i> Search by Question</label>
                                         <div class="col-xs-7 col-sm-10 col-md-10 col-lg-10">
-                                            <input id="q" type="text" value="" name="q" class="form-control" autocomplete="off">
+                                            <input id="q" type="search" value="" name="q" class="form-control" autocomplete="off" autofocus="autofocus">
                                         </div>
                                         <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
@@ -186,7 +186,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                         $numRows = $result['num_rows'];
                                         foreach ($result['result'] as $row) {
                                             ?>
-                                            <tr>
+                                            <tr id="card_<?php echo $row['faq__ID']; ?>">
                                                 <td>
                                                     <?php echo $sr = $sr + 1; ?>.
                                                 </td>
@@ -202,13 +202,13 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                            <a id="card_<?php echo $row['faq__ID']; ?>_del" onclick="return delById('card_<?php echo $row['faq__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                         <?php } ?>
                                                         <?php if ($restoreAccess == TRUE) { ?>
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                            <a id="card_<?php echo $row['faq__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['faq__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>
