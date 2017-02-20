@@ -101,7 +101,7 @@ $sql = "SELECT header__ID,header__Title FROM sulata_headers WHERE header__dbStat
                                     <fieldset id="search-area1">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><i class="fa fa-search blue"></i> Search by Title</label>
                                         <div class="col-xs-7 col-sm-10 col-md-10 col-lg-10">
-                                            <input id="q" type="text" value="" name="q" class="form-control" autocomplete="off">
+                                            <input id="q" type="search" value="" name="q" class="form-control" autocomplete="off" autofocus="autofocus">
                                         </div>
                                         <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
@@ -151,12 +151,17 @@ $sql = "SELECT header__ID,header__Title FROM sulata_headers WHERE header__dbStat
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a href="<?php echo ADMIN_URL; ?>headers-update<?php echo PHP_EXTENSION;?>/<?php echo $row['header__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a id="card_<?php echo $row['header__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>headers-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['header__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['header__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>headers-remote<?php echo PHP_EXTENSION;?>/delete/<?php echo $row['header__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a id="card_<?php echo $row['header__ID']; ?>_del" onclick="return delById('card_<?php echo $row['header__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>headers-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['header__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                    <?php } ?>
+
+                                                    <?php if ($restoreAccess == TRUE) { ?>
+
+                                                        <a id="card_<?php echo $row['header__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>headers-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['header__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                     <?php } ?>
 
                                                 </header>

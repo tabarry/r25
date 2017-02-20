@@ -117,7 +117,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                     <fieldset id="search-area1">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><i class="fa fa-search blue"></i> Search by Title</label>
                                         <div class="col-xs-7 col-sm-10 col-md-10 col-lg-10">
-                                            <input id="q" type="text" value="" name="q" class="form-control" autocomplete="off">
+                                            <input id="q" type="search" value="" name="q" class="form-control" autocomplete="off" autofocus="autofocus">
                                         </div>
                                         <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">

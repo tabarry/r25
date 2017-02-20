@@ -85,7 +85,7 @@ form{
 form *{
     box-shadow:none !important;
 }
-
+form search,
 form input,
 form textarea,
 form select{
