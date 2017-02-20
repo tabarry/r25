@@ -4,10 +4,49 @@ function suStayAlive(url) {
     $.post(url);
 }
 //Reset all form
-function suReset() {
+function suReset1() {
     for (i = 0; i <= document.forms.length - 1; i++) {
         if (document.forms[i]) {
             document.forms[i].reset();
+        }
+    }
+}
+//Reset form
+function suReset(frmName) {
+
+
+var elements = document.getElementById(frmName).elements;
+
+
+
+    for (i = 0; i < elements.length; i++) {
+
+        field_type = elements[i].type.toLowerCase();
+
+        switch (field_type) {
+
+            case "text":
+            case "password":
+            case "textarea":
+            case "hidden":
+
+                elements[i].value = "";
+                break;
+
+            case "radio":
+            case "checkbox":
+                if (elements[i].checked) {
+                    elements[i].checked = false;
+                }
+                break;
+
+            case "select-one":
+            case "select-multi":
+                elements[i].selectedIndex = 0;
+                break;
+
+            default:
+                break;
         }
     }
 }

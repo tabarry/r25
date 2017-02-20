@@ -8,7 +8,7 @@ include('../sulata/includes/db-structure.php');
 checkLogin();
 $id = suSegment(1);
 if ($id == $_SESSION[SESSION_PREFIX . 'user__ID']) {
-    suRedirect(ADMIN_URL . 'users-update<?php echo PHP_EXTENSION;?>/');
+    suRedirect(ADMIN_URL . 'users-update'.PHP_EXTENSION.'/');
 }
 //Conditions for update profile
 if ($id == '') {

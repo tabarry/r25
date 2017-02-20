@@ -156,7 +156,9 @@ $sql = "SELECT faq__ID,faq__Question,faq__Sequence,faq__Status FROM sulata_faqs 
 
                                                         <a id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
-
+                                                    <?php if ($duplicateAccess == TRUE) { ?>
+                                                        <a id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
+                                                    <?php } ?>
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
                                                         <a id="card_<?php echo $row['faq__ID']; ?>_del" onclick="return delById('card_<?php echo $row['faq__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
@@ -172,29 +174,29 @@ $sql = "SELECT faq__ID,faq__Question,faq__Sequence,faq__Status FROM sulata_faqs 
 
                                             <label>Question</label>
                                             <h1><?php
-                                            if (suUnstrip($row['faq__Question']) == '') {
-                                                echo "-";
-                                            } else {
-                                                echo suSubstr(suUnstrip($row['faq__Question']));
-                                            }
-                                            ?></h1>
+                                                if (suUnstrip($row['faq__Question']) == '') {
+                                                    echo "-";
+                                                } else {
+                                                    echo suSubstr(suUnstrip($row['faq__Question']));
+                                                }
+                                                ?></h1>
 
                                             <label>Sequence</label>
                                             <p><?php
-                                            if (suUnstrip($row['faq__Sequence']) == '') {
-                                                echo "-";
-                                            } else {
-                                                echo suSubstr(suUnstrip($row['faq__Sequence']));
-                                            }
-                                            ?></p>
+                                                if (suUnstrip($row['faq__Sequence']) == '') {
+                                                    echo "-";
+                                                } else {
+                                                    echo suSubstr(suUnstrip($row['faq__Sequence']));
+                                                }
+                                                ?></p>
                                             <label>Status</label>
                                             <p><?php
-                                            if (suUnstrip($row['faq__Status']) == '') {
-                                                echo "-";
-                                            } else {
-                                                echo suSubstr(suUnstrip($row['faq__Status']));
-                                            }
-                                            ?></p>
+                                                if (suUnstrip($row['faq__Status']) == '') {
+                                                    echo "-";
+                                                } else {
+                                                    echo suSubstr(suUnstrip($row['faq__Status']));
+                                                }
+                                                ?></p>
                                             <div class="right"><label><?php echo $sr = $sr + 1; ?></label></div>
 
                                         </div>

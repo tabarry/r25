@@ -66,6 +66,7 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
 }
 //Edit delete download access
 $editAccess = TRUE;
+$duplicateAccess = TRUE;
 $deleteAccess = TRUE;
 $restoreAccess = TRUE;
 $addAccess = TRUE;
