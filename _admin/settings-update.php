@@ -113,7 +113,8 @@ if ($result['num_rows'] == 0) {
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label><?php echo $dbs_sulata_settings['setting__Setting_req']; ?>Setting:</label>
                                                 <?php
-                                                $arg = array('type' => 'text', 'name' => 'setting__Setting', 'id' => 'setting__Setting', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_settings['setting__Setting_max'], 'class' => 'form-control', 'value' => suUnstrip($row['setting__Setting']), 'readonly' => 'readonly');
+                                                                                                $js = "return $('#setting__Key').val(doSlugify(this.value,'_'));";
+                                                $arg = array('type' => 'text', 'name' => 'setting__Setting', 'id' => 'setting__Setting', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_settings['setting__Setting_max'], 'class' => 'form-control', 'value' => suUnstrip($row['setting__Setting']), 'readonly' => 'readonly', 'onkeyup' => $js);
                                                 echo suInput('input', $arg);
                                                 ?>
                                             </div>

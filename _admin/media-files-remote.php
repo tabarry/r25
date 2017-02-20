@@ -69,7 +69,7 @@ if ($do == "add") {
         //Get file type and image dimensions if image
         $sql = "SELECT mediacat__Type, mediacat__Thumbnail_Width, mediacat__Thumbnail_Height, mediacat__Image_Width, mediacat__Image_Height FROM sulata_media_categories WHERE mediacat__ID='" . $_POST['mediafile__Category'] . "'";
         $result = suQuery($sql);
-        
+
         if ($row['mediacat__Thumbnail_Width'] == '0') {
             $row['mediacat__Thumbnail_Width'] = $defaultWidth;
         }
@@ -83,7 +83,7 @@ if ($do == "add") {
             $row['mediacat__Image_Height'] = $defaultHeight;
         }
 
-        
+
         //If file
         if ($row['mediacat__Type'] == 'File') {
             // file
@@ -158,7 +158,7 @@ if ($do == "update") {
 
     if ($result['errno'] > 0) {
         if ($result['errno'] == 1062) {
-            $error = sprintf(DUPLICATION_ERROR, '');
+            $error = sprintf(DUPLICATION_ERROR, 'Title in this category');
         } else {
             $error = MYSQL_ERROR;
         }
@@ -176,7 +176,7 @@ if ($do == "update") {
         //Get file type and image dimensions if image
         $sql = "SELECT mediacat__Type, mediacat__Thumbnail_Width, mediacat__Thumbnail_Height, mediacat__Image_Width, mediacat__Image_Height FROM sulata_media_categories WHERE mediacat__ID='" . $_POST['mediafile__Category'] . "'";
         $result = suQuery($sql);
-        
+
         if ($row['mediacat__Thumbnail_Width'] == '0') {
             $row['mediacat__Thumbnail_Width'] = $defaultWidth;
         }
@@ -190,7 +190,7 @@ if ($do == "update") {
             $row['mediacat__Image_Height'] = $defaultHeight;
         }
 
-        
+
         //If file
         if ($row['mediacat__Type'] == 'File') {
             // file
@@ -233,5 +233,38 @@ if ($do == "delete") {
     $uid = uniqid() . '-';
     $sql = "UPDATE sulata_media_files SET mediafile__Title=CONCAT('" . $uid . "',mediafile__Title), mediafile__Last_Action_On ='" . date('Y-m-d H:i:s') . "',mediafile__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', mediafile__dbState='Deleted' WHERE mediafile__ID = '" . $id . "'";
     $result = suQuery($sql);
+}
+//Restore record
+if ($do == "restore") {
+//Check referrer
+    suCheckRef();
+    $id = suSegment(2);
+//Delete from database by updating just the state
+    //make a unique id attach to previous unique field
+    $uid = uniqid() . '-';
+    $sql = "UPDATE sulata_media_files SET mediafile__Title=SUBSTR(mediafile__Title," . (UID_LENGTH + 1) . "), mediafile__Last_Action_On ='" . date('Y-m-d H:i:s') . "',mediafile__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', mediafile__dbState='Live' WHERE mediafile__ID = '" . $id . "'";
+    $result = suQuery($sql);
+    if ($result['errno'] > 0) {
+        if ($result['errno'] == 1062) {
+            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Title in this category');
+        } else {
+            $error = MYSQL_ERROR;
+        }
+
+        suPrintJs('
+            parent.$("#message-area").hide();
+            parent.$("#error-area").show();
+            parent.$("#error-area").html("<ul><li>' . $error . '</li></ul>");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    } else {
+        suPrintJs('
+            parent.restoreById("card_' . $id . '");
+            parent.$("#error-area").hide();
+            parent.$("#message-area").show();
+            parent.$("#message-area").html("' . RECORD_RESTORED . '");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    }
 }
 ?>

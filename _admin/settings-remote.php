@@ -44,7 +44,7 @@ if ($do == "add") {
 
     if ($result['errno'] > 0) {
         if ($result['errno'] == 1062) {
-            $error = sprintf(DUPLICATION_ERROR, 'Key');
+            $error = sprintf(DUPLICATION_ERROR, 'Setting or Key');
         } else {
             $error = MYSQL_ERROR;
         }
@@ -101,7 +101,7 @@ if ($do == "update") {
 
     if ($result['errno'] > 0) {
         if ($result['errno'] == 1062) {
-            $error = sprintf(DUPLICATION_ERROR, 'Key');
+            $error = sprintf(DUPLICATION_ERROR, 'Setting or Key');
         } else {
             $error = MYSQL_ERROR;
         }
@@ -140,5 +140,38 @@ if ($do == "delete") {
     $uid = uniqid() . '-';
     $sql = "UPDATE sulata_settings SET setting__Setting=CONCAT('" . $uid . "',setting__Setting),setting__Key=CONCAT('" . $uid . "',setting__Key), setting__Last_Action_On ='" . date('Y-m-d H:i:s') . "',setting__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', setting__dbState='Deleted' WHERE setting__ID = '" . $id . "'";
     $result = suQuery($sql);
+}
+//Restore record
+if ($do == "restore") {
+//Check referrer
+    suCheckRef();
+    $id = suSegment(2);
+//Delete from database by updating just the state
+    //make a unique id attach to previous unique field
+    $uid = uniqid() . '-';
+    $sql = "UPDATE sulata_settings SET setting__Setting=SUBSTR(setting__Setting," . (UID_LENGTH + 1) . "),setting__Key=SUBSTR(setting__Key," . (UID_LENGTH + 1) . "), setting__Last_Action_On ='" . date('Y-m-d H:i:s') . "',setting__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', setting__dbState='Live' WHERE setting__ID = '" . $id . "'";
+    $result = suQuery($sql);
+    if ($result['errno'] > 0) {
+        if ($result['errno'] == 1062) {
+            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Setting or Key');
+        } else {
+            $error = MYSQL_ERROR;
+        }
+
+        suPrintJs('
+            parent.$("#message-area").hide();
+            parent.$("#error-area").show();
+            parent.$("#error-area").html("<ul><li>' . $error . '</li></ul>");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    } else {
+        suPrintJs('
+            parent.restoreById("card_' . $id . '");
+            parent.$("#error-area").hide();
+            parent.$("#message-area").show();
+            parent.$("#message-area").html("' . RECORD_RESTORED . '");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    }
 }
 ?>

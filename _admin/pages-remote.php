@@ -136,4 +136,37 @@ if ($do == "delete") {
     $sql = "UPDATE sulata_pages SET page__Name=CONCAT('" . $uid . "',page__Name), page__Last_Action_On ='" . date('Y-m-d H:i:s') . "',page__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', page__dbState='Deleted' WHERE page__ID = '" . $id . "'";
     $result = suQuery($sql);
 }
+//Restore record
+if ($do == "restore") {
+//Check referrer
+    suCheckRef();
+    $id = suSegment(2);
+//Delete from database by updating just the state
+    //make a unique id attach to previous unique field
+    $uid = uniqid() . '-';
+    $sql = "UPDATE sulata_pages SET page__Name=SUBSTR(page__Name," . (UID_LENGTH + 1) . "), page__Last_Action_On ='" . date('Y-m-d H:i:s') . "',page__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', page__dbState='Live' WHERE page__ID = '" . $id . "'";
+    $result = suQuery($sql);
+    if ($result['errno'] > 0) {
+        if ($result['errno'] == 1062) {
+            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Page');
+        } else {
+            $error = MYSQL_ERROR;
+        }
+
+        suPrintJs('
+            parent.$("#message-area").hide();
+            parent.$("#error-area").show();
+            parent.$("#error-area").html("<ul><li>' . $error . '</li></ul>");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    } else {
+        suPrintJs('
+            parent.restoreById("card_' . $id . '");
+            parent.$("#error-area").hide();
+            parent.$("#message-area").show();
+            parent.$("#message-area").html("' . RECORD_RESTORED . '");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    }
+}
 ?>

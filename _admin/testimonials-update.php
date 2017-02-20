@@ -118,7 +118,7 @@ $pageName='Update Testimonials';$pageTitle='Update Testimonials';
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
 <label><?php echo $dbs_sulata_testimonials['testimonial__Name_req']; ?>Name:</label>
                                 <?php
-                                $arg = array('type' => $dbs_sulata_testimonials['testimonial__Name_html5_type'] , 'name' => 'testimonial__Name', 'id' => 'testimonial__Name', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_testimonials['testimonial__Name_max']  , 'value'=>suUnstrip($row['testimonial__Name']),$dbs_sulata_testimonials['testimonial__Name_html5_req'] => $dbs_sulata_testimonials['testimonial__Name_html5_req'],'class'=>'form-control');
+                                $arg = array('type' => $dbs_sulata_testimonials['testimonial__Name_html5_type'] , 'name' => 'testimonial__Name', 'id' => 'testimonial__Name', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_testimonials['testimonial__Name_max']  , 'value'=>suUnstrip($row['testimonial__Name']),$dbs_sulata_testimonials['testimonial__Name_html5_req'] => $dbs_sulata_testimonials['testimonial__Name_html5_req'],'class'=>'form-control','placeholder'=>TESTIMONIAL_PLACEHOLDER);
                                 echo suInput('input', $arg);
                                 ?>
 </div>

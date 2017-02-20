@@ -191,7 +191,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                         $numRows = $result['num_rows'];
                                         foreach ($result['result'] as $row) {
                                             ?>
-                                            <tr>
+                                            <tr id="card_<?php echo $row['mediafile__ID']; ?>">
                                                 <td>
                                                     <?php echo $sr = $sr + 1; ?>.
                                                 </td>
@@ -210,15 +210,18 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                                 <td>
                                                     <?php echo $row['mediafile__Date2']; ?>
                                                 </td>
-                                                <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
+                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION;?>/<?php echo $row['mediafile__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a id="card_<?php echo $row['mediafile__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediacat__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                         <?php } ?>
-                                                        <?php if ($deleteAccess == TRUE) { ?> 
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION;?>/delete/<?php echo $row['mediafile__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
-                                                        </td>
-                                                    <?php } ?>
+                                                        <?php if ($deleteAccess == TRUE) { ?>
+                                                            <a id="card_<?php echo $row['mediafile__ID']; ?>_del" onclick="return delById('card_<?php echo $row['mediacat__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['mediacat__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <?php } ?>
+                                                        <?php if ($restoreAccess == TRUE) { ?>
+                                                            <a id="card_<?php echo $row['mediafile__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['mediacat__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+                                                        <?php } ?>
+                                                    </td>
                                                 <?php } ?>
                                             </tr>
                                         <?php } ?>

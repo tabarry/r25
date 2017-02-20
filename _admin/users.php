@@ -97,7 +97,7 @@ $pageTitle = 'Manage Users';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>users-cards<?php echo PHP_EXTENSION;?>/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>users-cards<?php echo PHP_EXTENSION; ?>/"><i class="fa fa-th-large"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -128,7 +128,7 @@ $pageTitle = 'Manage Users';
                                 </form>
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>users-add<?php echo PHP_EXTENSION;?>/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>users-add<?php echo PHP_EXTENSION; ?>/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('user__Name', 'user__Phone', 'user__Email', 'user__Status');
@@ -184,7 +184,7 @@ $pageTitle = 'Manage Users';
                                         $numRows = $result['num_rows'];
                                         foreach ($result['result'] as $row) {
                                             ?>
-                                            <tr>
+                                            <tr id="card_<?php echo $row['user__ID']; ?>">
                                                 <td>
                                                     <?php echo $sr = $sr + 1; ?>.
                                                 </td>
@@ -203,16 +203,19 @@ $pageTitle = 'Manage Users';
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>users-update<?php echo PHP_EXTENSION;?>/<?php echo $row['user__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a id="card_<?php echo $row['user__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>users-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['user__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
                                                             <?php if ($row['user__ID'] != $_SESSION[SESSION_PREFIX . 'user__ID']) { ?>
-                                                                <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>users-remote<?php echo PHP_EXTENSION;?>/delete/<?php echo $row['user__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                                <a id="card_<?php echo $row['user__ID']; ?>_del" onclick="return delById('card_<?php echo $row['user__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>users-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['user__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                             <?php } ?>
-
+                                                        <?php } ?>
+                                                        <?php if ($restoreAccess == TRUE) { ?>
+                                                            <a id="card_<?php echo $row['user__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>users-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['user__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>
+
                                             </tr>
                                         <?php } ?>
 
@@ -225,13 +228,13 @@ $pageTitle = 'Manage Users';
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users<?php echo PHP_EXTENSION;?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users<?php echo PHP_EXTENSION; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users<?php echo PHP_EXTENSION;?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users<?php echo PHP_EXTENSION; ?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

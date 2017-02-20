@@ -106,7 +106,8 @@ checkLogin();
                                                 <label>
                                                     <?php echo $dbs_sulata_pages['page__Name_req']; ?>Name:</label>
                                                 <?php
-                                                $arg = array('type' => $dbs_sulata_pages['page__Name_html5_type'], 'name' => 'page__Name', 'id' => 'page__Name', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_pages['page__Name_max'], $dbs_sulata_pages['page__Name_html5_req'] => $dbs_sulata_pages['page__Name_html5_req'], 'class' => 'form-control');
+                                                $js = "return $('#page__Permalink').val(doSlugify(this.value,'-'));";
+                                                $arg = array('type' => $dbs_sulata_pages['page__Name_html5_type'], 'name' => 'page__Name', 'id' => 'page__Name', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_pages['page__Name_max'], $dbs_sulata_pages['page__Name_html5_req'] => $dbs_sulata_pages['page__Name_html5_req'], 'class' => 'form-control','onkeyup'=>$js);
                                                 echo suInput('input', $arg);
                                                 ?>
 
@@ -125,6 +126,7 @@ checkLogin();
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                 <label><?php echo $dbs_sulata_pages['page__Permalink_req']; ?>Permalink:</label>
                                                 <?php
+                                                
                                                 $arg = array('type' => $dbs_sulata_pages['page__Permalink_html5_type'], 'name' => 'page__Permalink', 'id' => 'page__Permalink', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_pages['page__Permalink_max'], $dbs_sulata_pages['page__Permalink_html5_req'] => $dbs_sulata_pages['page__Permalink_html5_req'], 'class' => 'form-control');
                                                 echo suInput('input', $arg);
                                                 ?>

@@ -41,6 +41,8 @@ define('INACTIVE_MESSAGE', 'Sorry, your access have been disabled. Please contac
 define('NOTES_UDPATE_MESSAGE', 'Notes updated successfully.');
 define('MULTIPLE_LOGIN_ERROR_MESSAGE', 'You have logged in from another IP address, hence this session has been logged out.');
 define('ALLOWED_ATTACHMENTS_MESSAGE', "The following files were not uploaded due to unallowed file formats.\\n\\n %s \\nOnly %s formats are allowed.\\n");
+define('TESTIMONIAL_PLACEHOLDER', 'Name, Company and Designation');
+
 /** Google Plus * */
 define('GOOGLE_CANCELLED', 'Authentication cancelled.');
 define('GOOGLE_INVALID_USER', 'The Google user logged in does not have access to this web site. Please log out from Google and log in again.');

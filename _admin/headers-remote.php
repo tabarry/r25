@@ -180,7 +180,7 @@ if ($do == "restore") {
     $result = suQuery($sql);
     if ($result['errno'] > 0) {
         if ($result['errno'] == 1062) {
-            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Question');
+            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Title');
         } else {
             $error = MYSQL_ERROR;
         }
@@ -198,7 +198,6 @@ if ($do == "restore") {
             parent.$("#message-area").show();
             parent.$("#message-area").html("' . RECORD_RESTORED . '");
             parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
-            parent.suForm.reset();
         ');
     }
 }

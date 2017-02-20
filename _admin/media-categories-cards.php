@@ -152,12 +152,17 @@ $sql = "SELECT mediacat__ID,mediacat__Name,mediacat__Type,mediacat__Sequence FRO
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a href="<?php echo ADMIN_URL; ?>media-categories-update<?php echo PHP_EXTENSION;?>/<?php echo $row['mediacat__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a id="card_<?php echo $row['mediacat__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>media-categories-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediacat__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['mediacat__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>media-categories-remote<?php echo PHP_EXTENSION;?>/delete/<?php echo $row['mediacat__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a id="card_<?php echo $row['mediacat__ID']; ?>_del" onclick="return delById('card_<?php echo $row['mediacat__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>media-categories-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['mediacat__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                    <?php } ?>
+
+                                                    <?php if ($restoreAccess == TRUE) { ?>
+
+                                                        <a id="card_<?php echo $row['mediacat__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>media-categories-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['mediacat__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                     <?php } ?>
 
                                                 </header>

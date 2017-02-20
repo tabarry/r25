@@ -139,4 +139,39 @@ if ($do == "delete") {
     $sql = "UPDATE sulata_testimonials SET testimonial__Name=CONCAT('" . $uid . "',testimonial__Name), testimonial__Last_Action_On ='" . date('Y-m-d H:i:s') . "',testimonial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', testimonial__dbState='Deleted' WHERE testimonial__ID = '" . $id . "'";
     $result = suQuery($sql);
 }
+
+//Restore record
+if ($do == "restore") {
+//Check referrer
+    suCheckRef();
+    $id = suSegment(2);
+//Delete from database by updating just the state
+    //make a unique id attach to previous unique field
+    $uid = uniqid() . '-';
+    $sql = "UPDATE sulata_testimonials SET testimonial__Name=SUBSTR(testimonial__Name," . (UID_LENGTH + 1) . "), testimonial__Last_Action_On ='" . date('Y-m-d H:i:s') . "',testimonial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', testimonial__dbState='Live' WHERE testimonial__ID = '" . $id . "'";
+    $result = suQuery($sql);
+    if ($result['errno'] > 0) {
+        if ($result['errno'] == 1062) {
+            $error = sprintf(DUPLICATION_ERROR_ON_UPDATE, 'Name');
+        } else {
+            $error = MYSQL_ERROR;
+        }
+
+        suPrintJs('
+            parent.$("#message-area").hide();
+            parent.$("#error-area").show();
+            parent.$("#error-area").html("<ul><li>' . $error . '</li></ul>");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    } else {
+        suPrintJs('
+            parent.restoreById("card_' . $id . '");
+            parent.$("#error-area").hide();
+            parent.$("#message-area").show();
+            parent.$("#message-area").html("' . RECORD_RESTORED . '");
+            parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
+        ');
+    }
+}
+?>
 ?>    
