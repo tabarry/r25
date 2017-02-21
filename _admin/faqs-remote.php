@@ -60,7 +60,6 @@ if ($do == "add") {
         $max_id = $result['insert_id'];
         //Upload files
 
-
         /* POST INSERT PLACE */
         if ($_POST['referrer'] == '') {
             $_POST['referrer'] = ADMIN_URL . 'faqs-cards' . PHP_EXTENSION . '/';
@@ -68,6 +67,8 @@ if ($do == "add") {
         if ($_POST['duplicate'] == 1) {
             $doJs = "parent.window.location.href='" . $_POST['referrer'] . "';
 ";
+        } else {
+            $doJs = '';
         }
         suPrintJs('
             parent.suToggleButton(0);
@@ -76,7 +77,7 @@ if ($do == "add") {
             parent.$("#message-area").html("' . SUCCESS_MESSAGE . '");
             parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
             parent.suReset("suForm");
-            '.$doJs.'
+            ' . $doJs . '
         ');
     }
 }

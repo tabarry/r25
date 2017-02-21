@@ -25,7 +25,7 @@ if ($_GET['type'] == 'chk') {
     foreach ($result['result'] as $row) {
         array_push($chkArr, $row[$f1b]);
     }
-    
+
 
 //Build checkboxes
     //State field

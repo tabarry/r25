@@ -99,7 +99,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>media-files-cards<?php echo PHP_EXTENSION;?>/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>media-files-cards<?php echo PHP_EXTENSION; ?>/"><i class="fa fa-th-large"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -131,7 +131,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 </form>
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>media-files-add<?php echo PHP_EXTENSION;?>/" class="btn btn-black">Add new..</a></div>  
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>media-files-add<?php echo PHP_EXTENSION; ?>/" class="btn btn-black">Add new..</a></div>  
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('mediacat__Name', 'mediafile__Title');
@@ -210,24 +210,24 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                                 <td>
                                                     <?php echo $row['mediafile__Date2']; ?>
                                                 </td>
-                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
+                                                <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
-                                                       <?php if ($editAccess == TRUE) { ?>
+                                                        <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo EDIT;?>" id="card_<?php echo $row['mediafile__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediafile__ID']; ?>/"><i class="fa fa-edit"></i></a>
-                                                    <?php } ?>
- <?php if ($duplicateAccess == TRUE) { ?>
-                                                        <a title="<?php echo DUPLICATE;?>" id="card_<?php echo $row['mediafile__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediafile__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
-                                                    <?php } ?>
-                                                    <?php if ($deleteAccess == TRUE) { ?>
+                                                            <a title="<?php echo EDIT; ?>" id="card_<?php echo $row['mediafile__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediafile__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <?php } ?>
+                                                        <?php if ($duplicateAccess == TRUE) { ?>
+                                                            <a title="<?php echo DUPLICATE; ?>" id="card_<?php echo $row['mediafile__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>media-files-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['mediafile__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
+                                                        <?php } ?>
+                                                        <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo DELETE;?>" id="card_<?php echo $row['mediafile__ID']; ?>_del" onclick="return delById('card_<?php echo $row['mediafile__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['mediafile__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
-                                                    <?php } ?>
+                                                            <a title="<?php echo DELETE; ?>" id="card_<?php echo $row['mediafile__ID']; ?>_del" onclick="return delById('card_<?php echo $row['mediafile__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['mediafile__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <?php } ?>
 
-                                                    <?php if ($restoreAccess == TRUE) { ?>
+                                                        <?php if ($restoreAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo RESTORE;?>" id="card_<?php echo $row['mediafile__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['mediafile__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
-                                                    <?php } ?>
+                                                            <a title="<?php echo RESTORE; ?>" id="card_<?php echo $row['mediafile__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>media-files-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['mediafile__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+                                                        <?php } ?>
                                                     </td>
                                                 <?php } ?>
                                             </tr>
@@ -241,13 +241,13 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>media-files<?php echo PHP_EXTENSION;?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>media-files<?php echo PHP_EXTENSION; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>media-files<?php echo PHP_EXTENSION;?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>media-files<?php echo PHP_EXTENSION; ?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

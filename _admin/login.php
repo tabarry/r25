@@ -27,7 +27,7 @@ if ($_GET['do'] == 'login') {
     $result = suQuery($sql);
 
     if ($result['num_rows'] == 1) {
-        
+
 //Set sessions
         $_SESSION[SESSION_PREFIX . 'user__ID'] = $result['result'][0]['user__ID'];
         $_SESSION[SESSION_PREFIX . 'user__Name'] = suUnstrip($result['result'][0]['user__Name']);
@@ -45,7 +45,7 @@ if ($_GET['do'] == 'login') {
         }
         //Update user IP
         $sql = "UPDATE sulata_users SET user__IP='" . $_SESSION[SESSION_PREFIX . 'user__IP'] . "' WHERE user__ID='" . $_SESSION[SESSION_PREFIX . 'user__ID'] . "'";
-        suQuery($sql,'update');
+        suQuery($sql, 'update');
 //Redirect
         suPrintJS("parent.suRedirect('" . ADMIN_URL . "');");
     } else {
@@ -57,7 +57,6 @@ if ($_GET['do'] == 'login') {
 //Print validation errors on parent
         $vError[] = INVALID_LOGIN;
         suValdationErrors($vError);
-        
     }
     exit();
 }
@@ -79,7 +78,7 @@ if ($_GET['do'] == 'retrieve') {
     $sql = "SELECT user__Name, user__Email, user__Password FROM sulata_users WHERE user__Email='" . suStrip($_POST['user__Email']) . "' AND user__dbState='Live'";
     $result = suQuery($sql);
     if ($result['num_rows'] == 1) {
-        
+
         $email = file_get_contents('../sulata/mails/lost-password.html');
         $email = str_replace('#NAME#', suUnstrip($row['user__Name']), $email);
         $email = str_replace('#SITE_NAME#', $getSettings['site_name'], $email);
@@ -88,14 +87,13 @@ if ($_GET['do'] == 'retrieve') {
         $subject = sprintf(LOST_PASSWORD_SUBJECT, $getSettings['site_name']);
         //Send mails
         suMail(suUnstrip($row['user__Email']), $subject, $email, $getSettings['site_name'], $getSettings['site_email'], TRUE);
-        
+
 //Redirect
         suPrintJS("alert('" . LOST_PASSWORD_DATA_SENT . "');parent.suRedirect('" . ADMIN_URL . "login" . PHP_EXTENSION . "/');");
     } else {
         $vError = array();
         $vError[] = NO_LOST_PASSWORD_DATA;
         suValdationErrors($vError);
-        
     }
     exit();
 }
@@ -142,7 +140,7 @@ if ($_GET['do'] == 'retrieve') {
 
                         <!-- Login form -->
 
-                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login<?php echo PHP_EXTENSION;?>/?do=login" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
+                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login<?php echo PHP_EXTENSION; ?>/?do=login" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
                             <div class="form-group">
                                 <?php
                                 if (isset($_COOKIE[SESSION_PREFIX . '_user__Remember']) && ($_COOKIE[SESSION_PREFIX . '_user__Remember'] != '')) {
@@ -203,7 +201,7 @@ if ($_GET['do'] == 'retrieve') {
 
                         <!-- Lost Password -->
 
-                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login<?php echo PHP_EXTENSION;?>/?do=retrieve" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >	
+                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login<?php echo PHP_EXTENSION; ?>/?do=retrieve" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >	
                             <div class="form-group">
                                 <label for="email"><?php echo $dbs_sulata_users['user__Email_req']; ?>Email:</label>
                                 <?php

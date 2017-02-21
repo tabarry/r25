@@ -63,13 +63,24 @@ if ($do == "add") {
 
         /* POST INSERT PLACE */
 
+        /* POST INSERT PLACE */
+        if ($_POST['referrer'] == '') {
+            $_POST['referrer'] = ADMIN_URL . 'pages-cards' . PHP_EXTENSION . '/';
+        }
+        if ($_POST['duplicate'] == 1) {
+            $doJs = "parent.window.location.href='" . $_POST['referrer'] . "';
+";
+        } else {
+            $doJs = '';
+        }
         suPrintJs('
             parent.suToggleButton(0);
             parent.$("#error-area").hide();
             parent.$("#message-area").show();
             parent.$("#message-area").html("' . SUCCESS_MESSAGE . '");
             parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
-            parent.suForm.reset();
+            parent.suReset("suForm");
+            ' . $doJs . '
         ');
     }
 }

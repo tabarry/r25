@@ -7,8 +7,6 @@ include('../sulata/includes/db-structure.php');
 
 checkLogin();
 
-$id = suSegment(1);
-
 //Check if action is duplicate
 if (suSegment(2) == 'duplicate') {
     $do = 'add';
@@ -16,9 +14,13 @@ if (suSegment(2) == 'duplicate') {
     $pageTitle = 'Duplicate FAQ';
 } else {
     $do = 'update';
-    $pageName = 'Update FAQs';
-    $pageTitle = 'Update FAQs';
+    $pageName = 'Update FAQ';
+    $pageTitle = 'Update FAQ';
 }
+
+$id = suSegment(1);
+
+
 $sql = "SELECT faq__ID,faq__Question,faq__Answer,faq__Sequence,faq__Status FROM sulata_faqs WHERE faq__ID='" . $id . "' AND faq__dbState='Live'";
 $result = suQuery($sql);
 $row = $result['result'][0];

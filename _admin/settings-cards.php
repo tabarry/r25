@@ -89,7 +89,7 @@ $restoreAccess = FALSE;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION;?>/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION; ?>/"><i class="fa fa-table"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -113,7 +113,7 @@ $restoreAccess = FALSE;
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
                                             <?php if (isset($_GET['q'])) { ?>
                                                 <div class="lineSpacer clear"></div>
-                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings-cards<?php echo PHP_EXTENSION;?>/">Clear search.</a></div>
+                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings-cards<?php echo PHP_EXTENSION; ?>/">Clear search.</a></div>
                                             <?php } ?>
                                         </div>
 
@@ -121,7 +121,7 @@ $restoreAccess = FALSE;
                                 </form>
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="settings-add<?php echo PHP_EXTENSION;?>/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="settings-add<?php echo PHP_EXTENSION; ?>/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
 
                                 <div class="row">
@@ -159,25 +159,25 @@ $restoreAccess = FALSE;
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
 
                                                     <header>
-                                                    <?php if ($editAccess == TRUE) { ?>
+                                                        <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo EDIT;?>" id="card_<?php echo $row['setting__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
-                                                    <?php } ?>
-                                                         <?php if ($duplicateAccess == TRUE) { ?>
-                                                        <a title="<?php echo DUPLICATE;?>" id="card_<?php echo $row['setting__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
-                                                    <?php } ?>
+                                                            <a title="<?php echo EDIT; ?>" id="card_<?php echo $row['setting__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <?php } ?>
+                                                        <?php if ($duplicateAccess == TRUE) { ?>
+                                                            <a title="<?php echo DUPLICATE; ?>" id="card_<?php echo $row['setting__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
+                                                        <?php } ?>
 
-                                                    <?php if ($deleteAccess == TRUE) { ?>
+                                                        <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo DELETE;?>" id="card_<?php echo $row['setting__ID']; ?>_del" onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
-                                                    <?php } ?>
+                                                            <a title="<?php echo DELETE; ?>" id="card_<?php echo $row['setting__ID']; ?>_del" onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <?php } ?>
 
-                                                    <?php if ($restoreAccess == TRUE) { ?>
+                                                        <?php if ($restoreAccess == TRUE) { ?>
 
-                                                        <a title="<?php echo RESTORE;?>" id="card_<?php echo $row['setting__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['setting__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
-                                                    <?php } ?>
+                                                            <a title="<?php echo RESTORE; ?>" id="card_<?php echo $row['setting__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['setting__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+                                                        <?php } ?>
 
-                                                </header>
+                                                    </header>
                                                 <?php } ?>
 
                                                 <label>Setting</label>
@@ -212,13 +212,13 @@ $restoreAccess = FALSE;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION;?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION;?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings<?php echo PHP_EXTENSION; ?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

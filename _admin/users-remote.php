@@ -98,13 +98,24 @@ if ($do == "add") {
 
             suMail($_POST['user__Email'], $subject, $email, $getSettings['site_name'], $getSettings['site_email'], TRUE);
         }
+        /* POST INSERT PLACE */
+        if ($_POST['referrer'] == '') {
+            $_POST['referrer'] = ADMIN_URL . 'users-cards' . PHP_EXTENSION . '/';
+        }
+        if ($_POST['duplicate'] == 1) {
+            $doJs = "parent.window.location.href='" . $_POST['referrer'] . "';
+";
+        } else {
+            $doJs = '';
+        }
         suPrintJs('
             parent.suToggleButton(0);
             parent.$("#error-area").hide();
             parent.$("#message-area").show();
             parent.$("#message-area").html("' . SUCCESS_MESSAGE . '");
             parent.$("html, body").animate({ scrollTop: parent.$("html").offset().top }, "slow");
-            parent.suForm.reset();
+            parent.suReset("suForm");
+            ' . $doJs . '
         ');
     }
 }
@@ -184,12 +195,12 @@ if ($do == "update") {
         }
 
         /* POST UPDATE PLACE */
-        
+
         //Set sessions
         $_SESSION[SESSION_PREFIX . 'user__Name'] = $_POST['user__Name'];
         $_SESSION[SESSION_PREFIX . 'user__Email'] = $_POST['user__Email'];
-        
-        
+
+
         if ($_POST['referrer'] == '') {
             $_POST['referrer'] = ADMIN_URL . 'users-cards' . PHP_EXTENSION . '/';
         }
