@@ -3,19 +3,12 @@
 function suStayAlive(url) {
     $.post(url);
 }
-//Reset all form
-function suReset1() {
-    for (i = 0; i <= document.forms.length - 1; i++) {
-        if (document.forms[i]) {
-            document.forms[i].reset();
-        }
-    }
-}
+
 //Reset form
 function suReset(frmName) {
 
 
-var elements = document.getElementById(frmName).elements;
+    var elements = document.getElementById(frmName).elements;
 
 
 
@@ -64,7 +57,7 @@ function suRedirect(url) {
 function suToggleButton(arg) {
     if (arg == 1) {
         if (parent.$('#suForm')) {
-            parent.$("#suForm").submit(function (event) {
+            parent.$("#suForm").submit(function(event) {
                 if (parent.$('#Submit')) {
                     parent.$("#Submit").val("Processing..");
                     parent.$("#Submit").css("cursor", "default");
@@ -108,17 +101,7 @@ function suSearchCombo(searchBox, searchCombo) {
     }
 }
 
-//Delete row and confirm
-function delRecord(arg, warning) {
-    c = confirm(warning);
-    if (c == false) {
-        return false;
 
-    } else {
-        $(arg).parent().parent().remove();
-        return true;
-    }
-}
 //Delete row and confirm
 function delById(id, warning) {
     c = confirm(warning);
@@ -131,6 +114,9 @@ function delById(id, warning) {
         }
         if ($('#' + id + '_edit')) {
             $('#' + id + '_edit').hide();
+        }
+        if ($('#' + id + '_duplicate')) {
+            $('#' + id + '_duplicate').hide();
         }
         if ($('#' + id + '_restore')) {
             $('#' + id + '_restore').show();
@@ -166,6 +152,9 @@ function restoreById(id) {
     }
     if ($('#' + id + '_edit')) {
         $('#' + id + '_edit').show();
+    }
+    if ($('#' + id + '_duplicate')) {
+        $('#' + id + '_duplicate').show();
     }
     if ($('#' + id + '_restore')) {
         $('#' + id + '_restore').hide();
@@ -274,7 +263,7 @@ function doStrongPassword(passwordEle, outputEle) {
     outputHidden.val(passed);
 }
 //Slugify text
-function doSlugify(text,spaceCharacter)
+function doSlugify(text, spaceCharacter)
 {
     return text.toString().toLowerCase()
             .replace(/\s+/g, spaceCharacter)           // Replace spaces with -

@@ -99,7 +99,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccessPDF == TRUE) {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>testimonials-cards<?php echo PHP_EXTENSION;?>/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>testimonials-cards<?php echo PHP_EXTENSION; ?>/"><i class="fa fa-th-large"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -135,7 +135,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccessPDF == TRUE) {
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>testimonials-add<?php echo PHP_EXTENSION;?>/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>testimonials-add<?php echo PHP_EXTENSION; ?>/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('testimonial__Name', 'testimonial__Location', 'testimonial__Date', 'testimonial__Status');
@@ -199,13 +199,20 @@ if (suSegment(1) == 'stream-csv' && $downloadAccessPDF == TRUE) {
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a id="card_<?php echo $row['testimonial__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>testimonials-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['testimonial__ID']; ?>/"><i class="fa fa-edit"></i></a>
+
+                                                            <a title="<?php echo EDIT; ?>" id="card_<?php echo $row['testimonial__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>testimonials-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['testimonial__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <?php } ?>
+                                                        <?php if ($duplicateAccess == TRUE) { ?>
+                                                            <a title="<?php echo DUPLICATE; ?>" id="card_<?php echo $row['testimonial__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>testimonials-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['testimonial__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
-                                                            <a id="card_<?php echo $row['testimonial__ID']; ?>_del" onclick="return delById('card_<?php echo $row['testimonial__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>testimonials-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['testimonial__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+
+                                                            <a title="<?php echo DELETE; ?>" id="card_<?php echo $row['testimonial__ID']; ?>_del" onclick="return delById('card_<?php echo $row['testimonial__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>testimonials-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['testimonial__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                         <?php } ?>
+
                                                         <?php if ($restoreAccess == TRUE) { ?>
-                                                            <a id="card_<?php echo $row['testimonial__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>testimonials-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['testimonial__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+
+                                                            <a title="<?php echo RESTORE; ?>" id="card_<?php echo $row['testimonial__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>testimonials-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['testimonial__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>
@@ -224,13 +231,13 @@ if (suSegment(1) == 'stream-csv' && $downloadAccessPDF == TRUE) {
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>testimonials<?php echo PHP_EXTENSION;?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>testimonials<?php echo PHP_EXTENSION; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>testimonials<?php echo PHP_EXTENSION;?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>testimonials<?php echo PHP_EXTENSION; ?>/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

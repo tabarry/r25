@@ -13,6 +13,8 @@ $sql = "SELECT setting__ID,setting__Setting,setting__Value
 
 $addAccess = FALSE;
 $deleteAccess = FALSE;
+$duplicateAccess = FALSE;
+$restoreAccess = FALSE;
 ?>
 <!DOCTYPE html>
 <html>
@@ -159,17 +161,20 @@ $deleteAccess = FALSE;
                                                     <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['setting__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a title="<?php echo EDIT;?>" id="card_<?php echo $row['setting__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                    <?php } ?>
+                                                         <?php if ($duplicateAccess == TRUE) { ?>
+                                                        <a title="<?php echo DUPLICATE;?>" id="card_<?php echo $row['setting__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>settings-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['setting__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['setting__ID']; ?>_del" onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a title="<?php echo DELETE;?>" id="card_<?php echo $row['setting__ID']; ?>_del" onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($restoreAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['setting__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['setting__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+                                                        <a title="<?php echo RESTORE;?>" id="card_<?php echo $row['setting__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>settings-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['setting__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                     <?php } ?>
 
                                                 </header>

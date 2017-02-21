@@ -154,19 +154,19 @@ $sql = "SELECT faq__ID,faq__Question,faq__Sequence,faq__Status FROM sulata_faqs 
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a title="<?php echo EDIT;?>" id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
                                                     <?php if ($duplicateAccess == TRUE) { ?>
-                                                        <a id="card_<?php echo $row['faq__ID']; ?>_edit" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
+                                                        <a title="<?php echo DUPLICATE;?>" id="card_<?php echo $row['faq__ID']; ?>_duplicate" href="<?php echo ADMIN_URL; ?>faqs-update<?php echo PHP_EXTENSION; ?>/<?php echo $row['faq__ID']; ?>/duplicate/"><i class="fa fa-copy"></i></a>
                                                     <?php } ?>
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['faq__ID']; ?>_del" onclick="return delById('card_<?php echo $row['faq__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a title="<?php echo DELETE;?>" id="card_<?php echo $row['faq__ID']; ?>_del" onclick="return delById('card_<?php echo $row['faq__ID']; ?>', '<?php echo CONFIRM_DELETE_RESTORE; ?>')" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/delete/<?php echo $row['faq__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($restoreAccess == TRUE) { ?>
 
-                                                        <a id="card_<?php echo $row['faq__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['faq__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
+                                                        <a title="<?php echo RESTORE;?>" id="card_<?php echo $row['faq__ID']; ?>_restore" href="<?php echo ADMIN_URL; ?>faqs-remote<?php echo PHP_EXTENSION; ?>/restore/<?php echo $row['faq__ID']; ?>/" target="remote" style="display:none"><i class="fa fa-undo"></i></a>
                                                     <?php } ?>
 
                                                 </header>

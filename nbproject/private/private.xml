@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Applications/MAMP/htdocs/r25/_admin/faqs-cards.php</file>
-            <file>file:/Applications/MAMP/htdocs/r25/_admin/faqs.php</file>
+            <file>file:/Applications/MAMP/htdocs/r25/sulata/includes/config.php</file>
+            <file>file:/Applications/MAMP/htdocs/r25/_admin/faqs-update.php</file>
+            <file>file:/Applications/MAMP/htdocs/r25/_admin/faqs-remote.php</file>
+            <file>file:/Applications/MAMP/htdocs/r25/sulata/js/sulata.js</file>
         </group>
     </open-files>
 </project-private>

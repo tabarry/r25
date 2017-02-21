@@ -69,7 +69,6 @@ if ($do == "add") {
             $doJs = "parent.window.location.href='" . $_POST['referrer'] . "';
 ";
         }
-        //$doJs = "parent.suReset('suForm');";
         suPrintJs('
             parent.suToggleButton(0);
             parent.$("#error-area").hide();

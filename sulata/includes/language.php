@@ -42,6 +42,11 @@ define('NOTES_UDPATE_MESSAGE', 'Notes updated successfully.');
 define('MULTIPLE_LOGIN_ERROR_MESSAGE', 'You have logged in from another IP address, hence this session has been logged out.');
 define('ALLOWED_ATTACHMENTS_MESSAGE', "The following files were not uploaded due to unallowed file formats.\\n\\n %s \\nOnly %s formats are allowed.\\n");
 define('TESTIMONIAL_PLACEHOLDER', 'Name, Company and Designation');
+/** Title Tags **/
+define('EDIT', 'Edit');
+define('DUPLICATE', 'Duplicate');
+define('DELETE', 'Delete');
+define('RESTORE', 'Restore');
 
 /** Google Plus * */
 define('GOOGLE_CANCELLED', 'Authentication cancelled.');
